@@ -339,21 +339,6 @@ from engine import *
 import engine
 import time
 
-GAME_MODE = "ava"
-WHITE_PLAYER = "Hamptaro AI"
-BLACK_PLAYER = "Hamptaro AI"
-PLAYER_IS_WHITE = False
-PLAYER_IS_BLACK = False
-ENGINE_DEPTH = 6
-MAX_ENGINE_DEPTH = 8
-game_history.append([[row[:] for row in board]])
-date_of_game = str(date.today())
-game_history.append([WHITE_PLAYER, BLACK_PLAYER, date_of_game])
-current_game = None
-game_rep_history.clear()
-game_rep_history.append(hash_position(board, True, current_castling()))
-LAST_SEARCH_SCORE = None
-print(f"AI vs AI — depth {ENGINE_DEPTH} Opening Trainer")
 
 
 def set_white_turn(value):
@@ -398,7 +383,7 @@ def play_ai_move():
         if best is None:
             return game_result(board, White_Turn)
 
-    game_history.append([[best[0], best[1][0] + best[1][1]]])
+    game_history.append([best[0], best[1][0] + best[1][1]])
 
     print(score)
     print(best)
@@ -477,5 +462,21 @@ def main():
 
 
 for i in OPENING_BOARDS:
+    input("Start Next Training game")
     board = i
+    GAME_MODE = "ava"
+    WHITE_PLAYER = "Hamptaro AI"
+    BLACK_PLAYER = "Hamptaro AI"
+    PLAYER_IS_WHITE = False
+    PLAYER_IS_BLACK = False
+    ENGINE_DEPTH = 6
+    MAX_ENGINE_DEPTH = 8
+    game_history.append([[row[:] for row in board]])
+    date_of_game = str(date.today())
+    game_history.append([WHITE_PLAYER, BLACK_PLAYER, date_of_game])
+    current_game = None
+    game_rep_history.clear()
+    game_rep_history.append(hash_position(board, True, current_castling()))
+    LAST_SEARCH_SCORE = None
+    print(f"AI vs AI — depth {ENGINE_DEPTH} Opening Trainer")
     main()
